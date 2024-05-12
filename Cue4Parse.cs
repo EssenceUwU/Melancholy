@@ -47,6 +47,10 @@ namespace Melancholy
             {
                 switch (kvp.Value.Name)
                 {
+                    case "CustomizationItemDB.uasset":
+                        Classes.FilePaths.CustomizationItemDb.Add(kvp.Value.Path); break;
+                    case "OutfitDB.uasset":
+                        Classes.FilePaths.OutfitDb.Add(kvp.Value.Path); break;
                     case "CharacterDescriptionDB.uasset":
                         Classes.FilePaths.CharacterDescriptionDb.Add(kvp.Value.Path); break;
                     case "ItemDB.uasset":
@@ -59,9 +63,9 @@ namespace Melancholy
                         Classes.FilePaths.PerkDb.Add(kvp.Value.Path); break;
                 }
 
-                /* Alternative method for adding cosmetics can be found in Cdn.cs - simply comment this part out
+                /*/* Alternative method for adding cosmetics can be found in Cdn.cs - simply comment this part out
                  and uncomment in Cdn.cs - only necessary if BHVR decide to change game files to break this
-                 */
+                 #1#
                 bool hasNestedIconsFolder = kvp.Value.Path.Split('/')
                                                 .SkipWhile(part => part != "PlayerCards")
                                                 .Any(sub => sub == "Icons" || sub == "HF2") &&
@@ -71,9 +75,11 @@ namespace Melancholy
                                                         kvp.Value.Path.Contains("UMGAssets/Icons/PlayerCards") &&
                                                         hasNestedIconsFolder;
 
-                if (isCustomizationOrPlayerCardsPath) Classes.Ids.CosmeticIds.Add(kvp.Value.NameWithoutExtension);
+                if (isCustomizationOrPlayerCardsPath) Classes.Ids.CosmeticIds.Add(kvp.Value.NameWithoutExtension);*/
             }
 
+            Add_Values(Classes.FilePaths.CustomizationItemDb, "CustomizationItemDB");
+            Add_Values(Classes.FilePaths.OutfitDb, "OutfitDB");
             Add_Values(Classes.FilePaths.CharacterDescriptionDb, "CharacterDescriptionDB");
             Add_Values(Classes.FilePaths.ItemDb, "ItemDB");
             Add_Values(Classes.FilePaths.ItemAddonDb, "ItemAddonDB");
@@ -96,6 +102,43 @@ namespace Melancholy
                     {
                         switch (type)
                         {
+                            case "CustomizationItemDB":
+                                Classes.Customization customization = new()
+                                {
+                                    CosmeticId = property?["CustomizationId"]?.ToString() ?? string.Empty,
+                                    CosmeticName =
+                                        property?["UIData"]?["DisplayName"]?["LocalizedString"]?.ToString() ??
+                                        string.Empty,
+                                    CosmeticDescription =
+                                        property?["UIData"]?["Description"]?["LocalizedString"]?.ToString() ??
+                                        string.Empty,
+                                    Category = property?["Category"]?.ToString() ?? string.Empty,
+                                    AssociatedCharacterIndex =
+                                        property?["AssociatedCharacter"]?.ToString() ?? string.Empty,
+                                    Rarity = property?["Rarity"]?.ToString() ?? string.Empty,
+                                    IsInStore = property?["IsInStore"]?.ToString() ?? string.Empty,
+                                    EventId = property?["EventId"]?.ToString() ?? string.Empty,
+                                    Availability = property?["Availability"]?["ItemAvailability"]?.ToString() ??
+                                                   string.Empty
+                                };
+                                if (!IsInBlacklist(customization.CosmeticId)) Classes.Ids.CosmeticIds.Add(customization);
+                                break;
+                            case "OutfitDB":
+                                Classes.Outfit outfit = new()
+                                {
+                                    OutfitId = property?["Id"]?.ToString() ?? string.Empty,
+                                    OutfitName = property?["UIData"]?["DisplayName"]?["LocalizedString"]?.ToString() ??
+                                                 string.Empty,
+                                    OutfitDescription =
+                                        property?["UIData"]?["Description"]?["LocalizedString"]?.ToString() ??
+                                        string.Empty,
+                                    CollectionName = property?["CollectionName"]?["LocalizedString"]?.ToString() ??
+                                                     string.Empty,
+                                    Availability = property?["Availability"]?["ItemAvailability"]?.ToString() ??
+                                                   string.Empty
+                                };
+                                if (!IsInBlacklist(outfit.OutfitId)) Classes.Ids.OutfitIds.Add(outfit);
+                                break;
                             case "CharacterDescriptionDB":
                                 if (property?["CharacterId"]?.ToString() == "None") continue;
                                 Classes.Character character = new()

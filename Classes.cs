@@ -34,8 +34,32 @@
             public string CharacterDefaultItem { get; set; } = string.Empty;
         }
 
+        public class Customization
+        {
+            public string CosmeticId { get; set; } = string.Empty;
+            public string CosmeticName { get; set; } = string.Empty;
+            public string CosmeticDescription { get; set; } = string.Empty;
+            public string Category { get; set; } = string.Empty;
+            public string AssociatedCharacterIndex { get; set; } = string.Empty;
+            public string Rarity { get; set; } = string.Empty;
+            public string IsInStore { get; set; } = string.Empty;
+            public string EventId { get; set; } = string.Empty;
+            public string Availability { get; set; } = string.Empty;
+        }
+
+        public class Outfit
+        {
+            public string OutfitId { get; set; } = string.Empty;
+            public string OutfitName { get; set; } = string.Empty;
+            public string OutfitDescription { get; set; } = string.Empty;
+            public string CollectionName { get; set; } = string.Empty;
+            public string Availability { get; set; } = string.Empty;
+        }
+
         public static class FilePaths
         {
+            public static readonly List<string> CustomizationItemDb = [];
+            public static readonly List<string> OutfitDb = [];
             public static readonly List<string> CharacterDescriptionDb = [];
             public static readonly List<string> ItemDb = [];
             public static readonly List<string> ItemAddonDb = [];
@@ -45,7 +69,8 @@
 
         public static class Ids
         {
-            public static readonly List<object> CosmeticIds = [];
+            public static readonly List<Customization> CosmeticIds = [];
+            public static readonly List<Outfit> OutfitIds = [];
             public static readonly List<Character> DlcIds = [];
             public static readonly List<ItemOfferingPerk> ItemIds = [];
             public static readonly List<ItemAddon> AddonIds = [];

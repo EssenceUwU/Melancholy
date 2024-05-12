@@ -56,6 +56,8 @@ SkipSettings:
 
     await Cdn.GetCdnFiles();
 
+    await Extras.MakeFile(Classes.Ids.CosmeticIds, "Cosmetics.json");
+    await Extras.MakeFile(Classes.Ids.OutfitIds, "Outfits.json");
     await Extras.MakeFile(Classes.Ids.DlcIds, "Dlc.json");
     await Extras.MakeFile(Classes.Ids.ItemIds, "Items.json");
     await Extras.MakeFile(Classes.Ids.AddonIds, "Addons.json");

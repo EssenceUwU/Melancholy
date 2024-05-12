@@ -33,11 +33,4 @@
     <PackageReference Include="Zlib-ng.NET" Version="1.0.1" />
     <PackageReference Include="ZstdSharp.Port" Version="0.8.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="CUE4Parse">
-      <HintPath>C:\Users\ameli\Desktop\New FModel\CUE4Parse.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

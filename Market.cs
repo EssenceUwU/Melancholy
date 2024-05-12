@@ -15,7 +15,10 @@ namespace Melancholy
             BuildJson();
 
             if (market != "dlconly" && market != "tempNoCosmetics")
+            {
                 AddInventoryItem(inventory, Classes.Ids.CosmeticIds, 1);
+                AddInventoryItem(inventory, Classes.Ids.OutfitIds, 1);
+            }
 
             AddInventoryItem(inventory, Classes.Ids.DlcIds, 1);
 
@@ -75,6 +78,10 @@ namespace Melancholy
                     id = itemOfferingPerk.ItemId;
                 else if (item is Classes.ItemAddon addon)
                     id = addon.ItemId;
+                else if (item is Classes.Customization customization)
+                    id = customization.CosmeticId;
+                else if (item is Classes.Outfit outfit)
+                    id = outfit.OutfitId;
 
                 return new Classes.InventoryItem
                 {
