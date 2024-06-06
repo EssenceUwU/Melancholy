@@ -105,19 +105,19 @@ namespace Melancholy
                             case "CustomizationItemDB":
                                 Classes.Customization customization = new()
                                 {
-                                    CosmeticId = property?["CustomizationId"]?.ToString() ?? string.Empty,
+                                    CosmeticId = property?["customizationId"]?.ToString() ?? string.Empty,
                                     CosmeticName =
                                         property?["UIData"]?["DisplayName"]?["LocalizedString"]?.ToString() ??
                                         string.Empty,
                                     CosmeticDescription =
                                         property?["UIData"]?["Description"]?["LocalizedString"]?.ToString() ??
                                         string.Empty,
-                                    Category = property?["Category"]?.ToString() ?? string.Empty,
+                                    Category = property?["category"]?.ToString() ?? string.Empty,
                                     AssociatedCharacterIndex =
                                         property?["AssociatedCharacter"]?.ToString() ?? string.Empty,
                                     Rarity = property?["Rarity"]?.ToString() ?? string.Empty,
                                     IsInStore = property?["IsInStore"]?.ToString() ?? string.Empty,
-                                    EventId = property?["EventId"]?.ToString() ?? string.Empty,
+                                    EventId = property?["eventID"]?.ToString() ?? string.Empty,
                                     Availability = property?["Availability"]?["ItemAvailability"]?.ToString() ??
                                                    string.Empty
                                 };
@@ -126,7 +126,7 @@ namespace Melancholy
                             case "OutfitDB":
                                 Classes.Outfit outfit = new()
                                 {
-                                    OutfitId = property?["Id"]?.ToString() ?? string.Empty,
+                                    OutfitId = property?["ID"]?.ToString() ?? string.Empty,
                                     OutfitName = property?["UIData"]?["DisplayName"]?["LocalizedString"]?.ToString() ??
                                                  string.Empty,
                                     OutfitDescription =
@@ -144,7 +144,7 @@ namespace Melancholy
                                 Classes.Character character = new()
                                 {
                                     CharacterName = property?["CharacterId"]?.ToString() ?? string.Empty,
-                                    CharacterIndex = property?["CharacterIndex"]?.ToString() ?? string.Empty,
+                                    CharacterIndex = property?["characterIndex"]?.ToString() ?? string.Empty,
                                     CharacterType = property?["Role"]?.ToString() ?? string.Empty,
                                     CharacterDefaultItem = property?["DefaultItem"]?.ToString() ?? string.Empty,
                                     Name = property?["DisplayName"]?["LocalizedString"]?.ToString() ?? string.Empty
@@ -170,7 +170,7 @@ namespace Melancholy
                                 {
                                     ItemId = property?["ItemId"]?.ToString() ?? string.Empty,
                                     CharacterType = property?["Role"]?.ToString() ?? string.Empty,
-                                    CharacterDefaultItem = property?["ParentItem"]?["ItemIDs"]?.Count() > 0 ? (property?["ParentItem"]?["ItemIDs"]?[0]?.ToString() ?? string.Empty) : string.Empty,
+                                    CharacterDefaultItem = property?["ParentItem"]?["itemIds"]?.Count() > 0 ? (property?["ParentItem"]?["itemIds"]?[0]?.ToString() ?? string.Empty) : string.Empty,
                                     Rarity = property?["Rarity"]?.ToString() ?? string.Empty,
                                     Availability = property?["Availability"]?["ItemAvailability"]?.ToString() ?? string.Empty,
                                     Name = property?["UIData"]?["DisplayName"]?["LocalizedString"]?.ToString() ?? string.Empty
@@ -203,6 +203,11 @@ namespace Melancholy
                     }
                 }
             }
+        }
+
+        public static bool IsListEmpty()
+        {
+            return Classes.Ids.CosmeticIds.Count == 0;
         }
 
         private static bool IsInBlacklist(string id)

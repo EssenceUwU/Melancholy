@@ -32,7 +32,29 @@ try
 PopulateSettings:
     Extras.Settings.PakPath = Extras.PromptInput("Provide path to your paks folder: ");
     Extras.Settings.AesKey = Extras.PromptInput("Provide AES key: ");
-    Extras.Settings.MappingsPath = Extras.PromptInput("Provide path to DBD.usmap file: ");
+
+    string directoryPath = AppDomain.CurrentDomain.BaseDirectory;
+    var usmapFiles = Directory.GetFiles(directoryPath, "*.usmap");
+
+    if (usmapFiles.Length == 0)
+        throw new Exception($"No .usmap files found, contact @bhvr for the latest file or place your own in {directoryPath}");
+
+    Console.WriteLine("Select a mappings file by entering its number:");
+    for (int i = 0; i < usmapFiles.Length; i++)
+    {
+        Console.WriteLine($"{i + 1}. {Path.GetFileName(usmapFiles[i])}");
+    }
+
+    int choice = 0;
+    while (true)
+    {
+        Console.Write("Enter your choice (number): ");
+        if (int.TryParse(Console.ReadLine(), out choice) && choice > 0 && choice <= usmapFiles.Length) break;
+        Console.WriteLine("Invalid choice, try again...");
+    }
+
+    string selectedFile = usmapFiles[choice - 1];
+    Extras.Settings.MappingsPath = selectedFile;
 
     File.WriteAllText(SettingsFile, JsonConvert.SerializeObject(Extras.Settings, Formatting.Indented));
 
@@ -45,6 +67,8 @@ SkipSettings:
     Cue4Parse.Initialize();
     Cue4Parse.CdnAccessKey = Cue4Parse.GetAccessKey();
     Cue4Parse.Get_Files();
+    if (Cue4Parse.IsListEmpty())
+        throw new Exception("Mappings file outdated, contact @bhvr on Discord for the new mappings file.");
 
     Market.ItemAmount = Extras.PromptIntInput("Enter desired item amount (0 for random): ");
     Market.PrestigeLevel = Extras.PromptIntInput("Enter desired prestige for characters: ");
@@ -86,6 +110,6 @@ SkipSettings:
 }
 catch (Exception ex)
 {
-    Console.WriteLine(ex.ToString());
+    Console.WriteLine(ex.Message);
     Console.ReadLine();
 }
