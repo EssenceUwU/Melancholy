@@ -97,12 +97,7 @@ namespace Melancholy
                     if (item is Classes.Character character)
                         id = character.CharacterName;
                     else if (item is Classes.ItemOfferingPerk itemOfferingPerk)
-                    {
-                        if (itemOfferingPerk.ItemId == "BoneSplinter") Console.WriteLine(itemOfferingPerk.Availability);
-                        if (itemOfferingPerk.ItemId == "FakeItem_Camper_OnryoTape")
-                            Console.WriteLine(itemOfferingPerk.ShouldBeInInventory);
                         id = itemOfferingPerk.ItemId;
-                    }
                     else if (item is Classes.ItemAddon addon)
                         id = addon.ItemId;
                     else if (item is Classes.Customization customization)
