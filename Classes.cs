@@ -13,6 +13,7 @@
         {
             public string CharacterType { get; set; } = string.Empty;
             public string Name { get; set; } = string.Empty;
+            public string FilePath { get; set; } = string.Empty;
         }
 
         public class Character : Base
@@ -27,6 +28,8 @@
             public string ItemId { get; set; } = string.Empty;
             public string Rarity { get; set; } = string.Empty;
             public string Availability { get; set; } = string.Empty;
+            public bool ShouldBeInInventory { get; set; } = true;
+            public string EventId { get; set; } = string.Empty;
         }
 
         public class ItemAddon : ItemOfferingPerk
@@ -45,6 +48,7 @@
             public string IsInStore { get; set; } = string.Empty;
             public string EventId { get; set; } = string.Empty;
             public string Availability { get; set; } = string.Empty;
+            public string FilePath { get; set; } = string.Empty;
         }
 
         public class Outfit
@@ -54,6 +58,7 @@
             public string OutfitDescription { get; set; } = string.Empty;
             public string CollectionName { get; set; } = string.Empty;
             public string Availability { get; set; } = string.Empty;
+            public string FilePath { get; set; } = string.Empty;
         }
 
         public static class FilePaths
@@ -134,6 +139,9 @@
             public string ItemId { get; set; } = string.Empty;
             public string CharacterType { get; set; } = string.Empty;
             public string CharacterDefaultItem { get; set; } = string.Empty;
+            public bool ShouldBeInInventory { get; set; } = true;
+            public string EventId { get; set; } = string.Empty;
+            public string Availability { get; set; } = string.Empty;
         }
 
         public class ItemBloodweb

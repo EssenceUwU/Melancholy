@@ -5,6 +5,9 @@ namespace Melancholy
     public static class Extras
     {
         public static Classes.Settings Settings = new();
+        public static bool AddNonInventoryItems { get; set; } = false;
+        public static bool AddRetiredOfferings { get; set; } = false;
+        public static bool AddEventItems { get; set; } = true;
 
         private static int Padding(string output) => (Console.WindowWidth / 2) - (output.Length / 2);
         private static void CenterText(string text) => Console.WriteLine("{0}{1}", new string(' ', Padding(text)), text);
@@ -38,6 +41,14 @@ namespace Melancholy
             } while (string.IsNullOrWhiteSpace(input));
 
             return input.Replace("\"", "");
+        }
+
+        public static string PromptOptionInput(string message)
+        {
+            Console.Write(message);
+            string input = Console.ReadLine();
+
+            return input;
         }
 
         public static int PromptIntInput(string message)

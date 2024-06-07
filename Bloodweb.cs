@@ -8,7 +8,7 @@ namespace Melancholy
         {
             Classes.BloodwebData bloodwebObj = new()
             {
-                PrestigeLevel = Player.PlayerLevel
+                PrestigeLevel = Market.PrestigeLevel
             };
 
             var json = JsonConvert.SerializeObject(bloodwebObj, Formatting.Indented);

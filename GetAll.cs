@@ -13,7 +13,7 @@ namespace Melancholy
                 CharacterName = character.CharacterName,
                 CharacterItems = GenerateItemData(character),
                 BloodWebData = BloodwebGenerator.Make_Bloodweb(character.CharacterType, character.CharacterDefaultItem),
-                PrestigeLevel = Player.PlayerLevel
+                PrestigeLevel = Market.PrestigeLevel
             }));
 
             var json = JsonConvert.SerializeObject(getAllData, Formatting.Indented);
@@ -26,7 +26,16 @@ namespace Melancholy
             
             characterItems.AddRange(
                 Classes.Ids.ItemIds
-                    .Where(item => character.CharacterType == item.CharacterType)
+                    .Where(item =>
+                    {
+                        bool includeItem = true;
+
+                        if (character.CharacterType == item.CharacterType) includeItem = true;
+                        if (!Extras.AddNonInventoryItems && !item.ShouldBeInInventory) includeItem = false;
+                        if (!Extras.AddEventItems && item.EventId != "None") includeItem = false;
+
+                        return includeItem;
+                    })
                     .Select(item => new Classes.ItemBloodweb
                     {
                         ItemId = item.ItemId,
@@ -36,8 +45,18 @@ namespace Melancholy
             characterItems.AddRange(
                 Classes.Ids.AddonIds
                     .Where(addon =>
-                        (character.CharacterType == addon.CharacterType || addon.CharacterType == "EPlayerRole::VE_None") &&
-                        !(character.CharacterType == "EPlayerRole::VE_Slasher" && character.CharacterDefaultItem != addon.CharacterDefaultItem))
+                    {
+                        bool includeAddon = true;
+
+                        if (character.CharacterType == addon.CharacterType ||
+                            addon.CharacterType == "EPlayerRole::VE_None") includeAddon = true;
+                        if (character.CharacterType == "EPlayerRole::VE_Slasher" &&
+                            character.CharacterDefaultItem != addon.CharacterDefaultItem) includeAddon = false;
+                        if (!Extras.AddNonInventoryItems && !addon.ShouldBeInInventory) includeAddon = false;
+                        if (!Extras.AddEventItems && addon.EventId != "None") includeAddon = false;
+
+                        return includeAddon;
+                    })
                     .Select(addon => new Classes.ItemBloodweb
                     {
                         ItemId = addon.ItemId,
@@ -47,8 +66,18 @@ namespace Melancholy
             characterItems.AddRange(
                 Classes.Ids.OfferingIds
                     .Where(offering =>
-                        character.CharacterType == offering.CharacterType ||
-                        offering.CharacterType == "EPlayerRole::VE_None")
+                    {
+                        bool includeOffering = true;
+
+                        if (character.CharacterType == offering.CharacterType ||
+                            offering.CharacterType == "EPlayerRole::VE_None") includeOffering = true;
+                        if (!Extras.AddNonInventoryItems && !offering.ShouldBeInInventory) includeOffering = false;
+                        if (!Extras.AddEventItems && offering.EventId != "None") includeOffering = false;
+                        if (!Extras.AddRetiredOfferings && offering.Availability == "EItemAvailability::Retired")
+                            includeOffering = false;
+
+                        return includeOffering;
+                    })
                     .Select(offering => new Classes.ItemBloodweb
                     {
                         ItemId = offering.ItemId,

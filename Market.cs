@@ -68,28 +68,55 @@ namespace Melancholy
 
         private static void AddInventoryItem(List<Classes.InventoryItem> inventory, IEnumerable<object> items, int count)
         {
-            inventory.AddRange(items.Select(item =>
-            {
-                string id = item.ToString() ?? string.Empty;
-
-                if (item is Classes.Character character)
-                    id = character.CharacterName;
-                else if (item is Classes.ItemOfferingPerk itemOfferingPerk)
-                    id = itemOfferingPerk.ItemId;
-                else if (item is Classes.ItemAddon addon)
-                    id = addon.ItemId;
-                else if (item is Classes.Customization customization)
-                    id = customization.CosmeticId;
-                else if (item is Classes.Outfit outfit)
-                    id = outfit.OutfitId;
-
-                return new Classes.InventoryItem
+            var filteredItems = items
+                .Where(item =>
                 {
-                    LastUpdatedAt = DateTimeOffset.Now.ToUnixTimeSeconds(),
-                    ObjectId = id,
-                    Quantity = (count == 0 ? new Random().Next(8, 88) : count)
-                };
-            }));
+                    bool includeItem = true;
+
+                    if (item is Classes.ItemAddon itemAddon)
+                    {
+                        if (!Extras.AddNonInventoryItems && !itemAddon.ShouldBeInInventory) includeItem = false;
+                        if (!Extras.AddEventItems && itemAddon.EventId != "None") includeItem = false;
+                    }
+                    else if (item is Classes.ItemOfferingPerk itemOfferingPerk)
+                    {
+                        if (!Extras.AddRetiredOfferings &&
+                            itemOfferingPerk.Availability == "EItemAvailability::Retired") includeItem = false;
+                        if (!Extras.AddNonInventoryItems && !itemOfferingPerk.ShouldBeInInventory) includeItem = false;
+                        if (!Extras.AddEventItems && itemOfferingPerk.EventId != "None") includeItem = false;
+                    }
+
+                    return includeItem;
+                });
+            
+            inventory.AddRange(filteredItems
+                .Select(item =>
+                {
+                    string id = item.ToString() ?? string.Empty;
+
+                    if (item is Classes.Character character)
+                        id = character.CharacterName;
+                    else if (item is Classes.ItemOfferingPerk itemOfferingPerk)
+                    {
+                        if (itemOfferingPerk.ItemId == "BoneSplinter") Console.WriteLine(itemOfferingPerk.Availability);
+                        if (itemOfferingPerk.ItemId == "FakeItem_Camper_OnryoTape")
+                            Console.WriteLine(itemOfferingPerk.ShouldBeInInventory);
+                        id = itemOfferingPerk.ItemId;
+                    }
+                    else if (item is Classes.ItemAddon addon)
+                        id = addon.ItemId;
+                    else if (item is Classes.Customization customization)
+                        id = customization.CosmeticId;
+                    else if (item is Classes.Outfit outfit)
+                        id = outfit.OutfitId;
+
+                    return new Classes.InventoryItem
+                    {
+                        LastUpdatedAt = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                        ObjectId = id,
+                        Quantity = (count == 0 ? new Random().Next(8, 88) : count)
+                    };
+                }));
         }
     }
 }
