@@ -8,6 +8,7 @@ namespace Melancholy
         public static bool AddNonInventoryItems { get; set; } = false;
         public static bool AddRetiredOfferings { get; set; } = false;
         public static bool AddEventItems { get; set; } = true;
+        public static bool AddBannersBadges { get; set; } = true;
 
         private static int Padding(string output) => (Console.WindowWidth / 2) - (output.Length / 2);
         private static void CenterText(string text) => Console.WriteLine("{0}{1}", new string(' ', Padding(text)), text);
