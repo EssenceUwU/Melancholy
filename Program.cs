@@ -78,15 +78,17 @@ SkipSettings:
     Console.Clear();
     Extras.Header();
 
-    string ShouldHaveNonInventoryItems =
-        Extras.PromptOptionInput("Should non-inventory items be included such as Onryo Tape, Wesker Spray, etc... (y/N): ");
+    string ShouldHaveNonInventoryItems = Extras.PromptOptionInput("Should non-inventory items be included such as Onryo Tape, Wesker Spray, etc... (y/N): ");
     Extras.AddNonInventoryItems = ShouldHaveNonInventoryItems is "yes" or "y";
-    string ShouldHaveRetiredOfferings =
-        Extras.PromptOptionInput("Should retired offerings be included such as killer splinters (y/N): ");
+    
+    string ShouldHaveRetiredOfferings = Extras.PromptOptionInput("Should retired offerings be included such as killer splinters (y/N): ");
     Extras.AddRetiredOfferings = ShouldHaveRetiredOfferings is "yes" or "y";
-    string ShouldHaveEventItems =
-        Extras.PromptOptionInput("Should event items be included such as anniversary cakes (Y/n): ");
+    
+    string ShouldHaveEventItems = Extras.PromptOptionInput("Should event items be included such as anniversary cakes (Y/n): ");
     Extras.AddEventItems = ShouldHaveEventItems is not ("no" or "n");
+   
+    string ShouldHaveBannersBadges = Extras.PromptOptionInput("Should banners and badges be included? (Y/n)");
+    Extras.AddBannersBadges = ShouldHaveBannersBadges is not ("no" or "n");
     
     Console.Clear();
     Extras.Header();

@@ -84,6 +84,11 @@ namespace Melancholy
                             itemOfferingPerk.Availability == "EItemAvailability::Retired") includeItem = false;
                         if (!Extras.AddNonInventoryItems && !itemOfferingPerk.ShouldBeInInventory) includeItem = false;
                         if (!Extras.AddEventItems && itemOfferingPerk.EventId != "None") includeItem = false;
+                    } 
+                    else if(item is Classes.Customization customizationItem)
+                    {
+                        // Remove if category is either ECustomizationCategory::Banner or ECustomizationCategory::Badge
+                        if (!Extras.AddBannersBadges && (customizationItem.Category == "ECustomizationCategory::Badge" || customizationItem.Category == "ECustomizationCategory::Banner")) includeItem = false;
                     }
 
                     return includeItem;
