@@ -4,9 +4,21 @@
     {
         public static async Task GetCdnFiles()
         {
-            var version = Extras.PromptInput("Enter game version: ");
+            // InputVersion:
+            // var version = Extras.PromptInput("Enter game version: ");
+            //
+            // string normalizedVersion = Extras.NormalizeInput(version);
+            // string asciiVersion = Extras.ConvertToAscii(normalizedVersion);
+            //
+            // if (!Extras.ValidateVersionFormat(asciiVersion))
+            // {
+            //     Console.WriteLine("Please input a valid version (Ex. 8.0.0)");
+            //     goto InputVersion;
+            // }
 
-            (string, bool) catalog = await SendRequest(version, "https://essenceuwu.uk/api/v1/DeadByDaylight/CDN/catalog", "Catalog");
+            Console.WriteLine("Generating CDN files...");
+
+            (string, bool) catalog = await SendRequest("https://essenceuwu.uk/api/v1/DeadByDaylight/CDN/catalog", "Catalog");
             if(catalog.Item2)
             {
                 await File.WriteAllTextAsync($"Files/Catalog.json", catalog.Item1);
@@ -17,7 +29,7 @@
                 Console.WriteLine(catalog.Item1);
             }
 
-            (string, bool) killswitch = await SendRequest(version, "https://essenceuwu.uk/api/v1/DeadByDaylight/CDN/killswitch", "Killswitch");
+            (string, bool) killswitch = await SendRequest("https://essenceuwu.uk/api/v1/DeadByDaylight/CDN/killswitch", "Killswitch");
             if(killswitch.Item2)
             {
                 await File.WriteAllTextAsync($"Files/Killswitch.json", killswitch.Item1);
@@ -35,13 +47,13 @@
             //     Classes.Ids.CosmeticIds.Add(item);
         }
 
-        private static async Task<(string, bool)> SendRequest(string version, string url, string file)
+        private static async Task<(string, bool)> SendRequest(string url, string file)
         {
             using var client = new HttpClient();
             client.Timeout = TimeSpan.FromSeconds(15);
             client.DefaultRequestHeaders.Add("User-Agent", "EssenceOwO");
             client.DefaultRequestHeaders.Add("Access-Key", Cue4Parse.CdnAccessKey);
-            client.DefaultRequestHeaders.Add("Game-Version", version[0..3]);
+            // client.DefaultRequestHeaders.Add("Game-Version", version[0..3]);
 
             try
             {

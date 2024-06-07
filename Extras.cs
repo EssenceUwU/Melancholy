@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace Melancholy
 {
@@ -30,6 +32,26 @@ namespace Melancholy
 
             Console.WriteLine($"{fileName} generated");
         }
+
+        /*public static string NormalizeInput(string input)
+        {
+            return input.Normalize(NormalizationForm.FormC);
+        }
+
+        public static bool ValidateVersionFormat(string version)
+        {
+            string pattern = @"^\d+\.\d+\.\d+$";
+            return Regex.IsMatch(version, pattern);
+        }
+        
+        public static string ConvertToAscii(string input)
+        {
+            Encoding ascii = Encoding.ASCII;
+            Encoding utf8 = Encoding.UTF8;
+            byte[] utf8Bytes = utf8.GetBytes(input);
+            byte[] asciiBytes = Encoding.Convert(utf8, ascii, utf8Bytes);
+            return ascii.GetString(asciiBytes);
+        }*/
 
         public static string PromptInput(string message)
         {
