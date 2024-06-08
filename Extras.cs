@@ -69,7 +69,7 @@ namespace Melancholy
         public static string PromptOptionInput(string message)
         {
             Console.Write(message);
-            string input = Console.ReadLine();
+            string input = Console.ReadLine().ToLower();
 
             return input;
         }

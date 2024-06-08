@@ -14,7 +14,7 @@ namespace Melancholy
             characters.List.AddRange(Classes.Ids.DlcIds.Select(character => new Classes.PrestigeCharacter
             {
                 CharacterName = character.CharacterName,
-                PrestigeLevel = Market.PrestigeLevel
+                PrestigeLevel = (Market.PrestigeLevel == 0 ? new Random().Next(Market.PrestigeLevelMinimum, Market.PrestigeLevelMaximum) : Market.PrestigeLevel)
             }));
 
             var characterJson = JsonConvert.SerializeObject(characters, Formatting.Indented);

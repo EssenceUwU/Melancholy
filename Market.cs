@@ -8,7 +8,9 @@ namespace Melancholy
         private static List<Classes.InventoryItem> inventory = [];
 
         public static int ItemAmount { get; set; }
-        public static int PrestigeLevel { get; set; }
+        public static int PrestigeLevel { get; set; } = 9;
+        public static int PrestigeLevelMinimum { get; set; } = 3;
+        public static int PrestigeLevelMaximum { get; set; } = 100;
 
         public static async Task Generate_Market(string market)
         {

@@ -19,7 +19,7 @@ try
         Console.WriteLine(
             $"Current settings:\nPak path: {Extras.Settings.PakPath}\nAES key: {Extras.Settings.AesKey}\nMappings path: {Extras.Settings.MappingsPath}\n");
         Console.Write("Would you like to load settings? (Y/n): ");
-        switch (Console.ReadLine())
+        switch (Console.ReadLine().ToLower())
         {
             case "no":
             case "n":
@@ -71,23 +71,30 @@ SkipSettings:
         throw new Exception("Mappings file outdated, contact @bhvr on Discord for the new mappings file.");
 
     Market.ItemAmount = Extras.PromptIntInput("Enter desired item amount (0 for random): ");
-    Market.PrestigeLevel = Extras.PromptIntInput("Enter desired prestige for characters: ");
+    
+    Market.PrestigeLevel = Extras.PromptIntInput("Enter desired prestige for characters (0 for random): ");
+    if (Market.PrestigeLevel == 0)
+    {
+        Market.PrestigeLevelMinimum = Extras.PromptIntInput("Enter minimum desired prestige: ");
+        Market.PrestigeLevelMaximum = Extras.PromptIntInput("Enter maximum desired prestige: ");
+    }
+    
     Player.PlayerLevel = Extras.PromptIntInput("Enter desired player level: ");
     Player.DevotionLevel = Extras.PromptIntInput("Enter desired devotion level: ");
 
     Console.Clear();
     Extras.Header();
 
-    string ShouldHaveNonInventoryItems = Extras.PromptOptionInput("Should non-inventory items be included such as Onryo Tape, Wesker Spray, etc... (y/N): ");
+    string ShouldHaveNonInventoryItems = Extras.PromptOptionInput("Should non-inventory items be included such as Onryo Tape, Wesker Spray, etc...? (y/N): ");
     Extras.AddNonInventoryItems = ShouldHaveNonInventoryItems is "yes" or "y";
     
-    string ShouldHaveRetiredOfferings = Extras.PromptOptionInput("Should retired offerings be included such as killer splinters (y/N): ");
+    string ShouldHaveRetiredOfferings = Extras.PromptOptionInput("Should retired offerings be included such as killer splinters? (y/N): ");
     Extras.AddRetiredOfferings = ShouldHaveRetiredOfferings is "yes" or "y";
     
-    string ShouldHaveEventItems = Extras.PromptOptionInput("Should event items be included such as anniversary cakes (Y/n): ");
+    string ShouldHaveEventItems = Extras.PromptOptionInput("Should event items be included such as anniversary cakes? (Y/n): ");
     Extras.AddEventItems = ShouldHaveEventItems is not ("no" or "n");
    
-    string ShouldHaveBannersBadges = Extras.PromptOptionInput("Should banners and badges be included? (Y/n)");
+    string ShouldHaveBannersBadges = Extras.PromptOptionInput("Should banners and badges be included? (Y/n): ");
     Extras.AddBannersBadges = ShouldHaveBannersBadges is not ("no" or "n");
     
     Console.Clear();
