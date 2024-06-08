@@ -18,6 +18,7 @@
 
             Console.WriteLine("Generating CDN files...");
 
+            Console.WriteLine("Generating Catalog file...");
             (string, bool) catalog = await SendRequest("https://essenceuwu.uk/api/v1/DeadByDaylight/CDN/catalog", "Catalog");
             if(catalog.Item2)
             {
@@ -29,6 +30,7 @@
                 Console.WriteLine(catalog.Item1);
             }
 
+            Console.WriteLine("Generating Killswitch file...");
             (string, bool) killswitch = await SendRequest("https://essenceuwu.uk/api/v1/DeadByDaylight/CDN/killswitch", "Killswitch");
             if(killswitch.Item2)
             {
@@ -71,11 +73,11 @@
             {
                 if (ex.CancellationToken.IsCancellationRequested)
                 {
-                    return ($"The request to get {file} file failed due to manual cancellation.", false);
+                    return ($"The request to get {file} file failed due to timeout.", false);
                 }
                 else
                 {
-                    return ($"The request to get {file} file failed due to timeout.", false);
+                    return ($"The request to get {file} file failed due to an error. (${ex.Message})", false);
                 }
             }
         }
