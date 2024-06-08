@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CUE4Parse.GameTypes.PUBG.Assets.Exports;
+using Newtonsoft.Json;
 
 namespace Melancholy
 {
@@ -33,6 +34,7 @@ namespace Melancholy
                         if (character.CharacterType == item.CharacterType) includeItem = true;
                         if (!Extras.AddNonInventoryItems && !item.ShouldBeInInventory) includeItem = false;
                         if (!Extras.AddEventItems && item.EventId != "None") includeItem = false;
+                        if (!Extras.AddScaryItems && Extras.IsScaryItem(item.ItemId)) includeItem = false;
 
                         return includeItem;
                     })
@@ -54,6 +56,7 @@ namespace Melancholy
                             character.CharacterDefaultItem != addon.CharacterDefaultItem) includeAddon = false;
                         if (!Extras.AddNonInventoryItems && !addon.ShouldBeInInventory) includeAddon = false;
                         if (!Extras.AddEventItems && addon.EventId != "None") includeAddon = false;
+                        if (!Extras.AddScaryItems && Extras.IsScaryItem(addon.ItemId)) includeAddon = false;
 
                         return includeAddon;
                     })
@@ -75,6 +78,7 @@ namespace Melancholy
                         if (!Extras.AddEventItems && offering.EventId != "None") includeOffering = false;
                         if (!Extras.AddRetiredOfferings && offering.Availability == "EItemAvailability::Retired")
                             includeOffering = false;
+                        if (!Extras.AddScaryItems && Extras.IsScaryItem(offering.ItemId)) includeOffering = false;
 
                         return includeOffering;
                     })

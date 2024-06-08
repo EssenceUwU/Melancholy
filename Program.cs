@@ -96,7 +96,13 @@ SkipSettings:
    
     string ShouldHaveBannersBadges = Extras.PromptOptionInput("Should banners and badges be included? (Y/n): ");
     Extras.AddBannersBadges = ShouldHaveBannersBadges is not ("no" or "n");
-    
+
+    string ShouldHaveLegacy = Extras.PromptOptionInput("Should legacy (pre 2016) prestige clothing be added? (Y/n): ");
+    Extras.AddLegacy = ShouldHaveLegacy is not ("no" or "n");
+
+    string ShouldHaveScaryItems = Extras.PromptOptionInput("Should \"scary\" things be included (like dev only items etc.)? (y/N): ");
+    Extras.AddScaryItems = ShouldHaveScaryItems is ("yes" or "y");
+
     Console.Clear();
     Extras.Header();
 
