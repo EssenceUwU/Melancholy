@@ -4,18 +4,6 @@
     {
         public static async Task GetCdnFiles()
         {
-            // InputVersion:
-            // var version = Extras.PromptInput("Enter game version: ");
-            //
-            // string normalizedVersion = Extras.NormalizeInput(version);
-            // string asciiVersion = Extras.ConvertToAscii(normalizedVersion);
-            //
-            // if (!Extras.ValidateVersionFormat(asciiVersion))
-            // {
-            //     Console.WriteLine("Please input a valid version (Ex. 8.0.0)");
-            //     goto InputVersion;
-            // }
-
             Console.WriteLine("Generating CDN files...");
 
             Console.WriteLine("Generating Catalog file...");

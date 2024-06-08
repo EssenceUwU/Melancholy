@@ -67,6 +67,7 @@ SkipSettings:
     Cue4Parse.Initialize();
     Cue4Parse.CdnAccessKey = Cue4Parse.GetAccessKey();
     Cue4Parse.Get_Files();
+
     if (Cue4Parse.IsListEmpty())
         throw new Exception("Mappings file outdated, contact @bhvr on Discord for the new mappings file.");
 

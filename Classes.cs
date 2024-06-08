@@ -49,6 +49,8 @@
             public string EventId { get; set; } = string.Empty;
             public string Availability { get; set; } = string.Empty;
             public string FilePath { get; set; } = string.Empty;
+            public bool IsLegacy { get; set; } = false;
+            public bool IsExclusive { get; set; } = false;
         }
 
         public class Outfit

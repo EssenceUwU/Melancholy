@@ -79,7 +79,6 @@ namespace Melancholy
                     {
                         if (!Extras.AddNonInventoryItems && !itemAddon.ShouldBeInInventory) includeItem = false;
                         if (!Extras.AddEventItems && itemAddon.EventId != "None") includeItem = false;
-                        if(!Extras.AddScaryItems && Extras.IsScaryItem(itemAddon.ItemId)) includeItem = false;
                     }
                     else if (item is Classes.ItemOfferingPerk itemOfferingPerk)
                     {
@@ -87,13 +86,12 @@ namespace Melancholy
                             itemOfferingPerk.Availability == "EItemAvailability::Retired") includeItem = false;
                         if (!Extras.AddNonInventoryItems && !itemOfferingPerk.ShouldBeInInventory) includeItem = false;
                         if (!Extras.AddEventItems && itemOfferingPerk.EventId != "None") includeItem = false;
-                        if (!Extras.AddScaryItems && Extras.IsScaryItem(itemOfferingPerk.ItemId)) includeItem = false;
                     } 
                     else if(item is Classes.Customization customizationItem)
                     {
                         if (!Extras.AddBannersBadges && (customizationItem.Category == "ECustomizationCategory::Badge" || customizationItem.Category == "ECustomizationCategory::Banner")) includeItem = false;
-                        if (!Extras.AddScaryItems && Extras.IsScaryItem(customizationItem.CosmeticId)) includeItem = false;
-                        if (!Extras.AddLegacy && Extras.IsLegacyCosmetic(customizationItem.CosmeticId)) includeItem = false;
+                        if (!Extras.AddScaryItems && customizationItem.IsExclusive) includeItem = false;
+                        if (!Extras.AddLegacy && customizationItem.IsLegacy) includeItem = false;
                     }
 
                     return includeItem;

@@ -15,7 +15,6 @@
                 {
                     if (!Extras.AddNonInventoryItems && !inventoryItem.ShouldBeInInventory) continue;
                     if (!Extras.AddEventItems && inventoryItem.EventId != "None") continue;
-                    if (!Extras.AddScaryItems && Extras.IsScaryItem(inventoryItem.ItemId)) continue;
 
                     BloodwebList.Add(new Classes.InventoryItemBloodweb
                     {
@@ -31,7 +30,6 @@
                     if (characterType.Contains("Slasher") && (addon.CharacterDefaultItem != characterPower)) continue;
                     if (!Extras.AddNonInventoryItems && !addon.ShouldBeInInventory) continue;
                     if (!Extras.AddEventItems && addon.EventId != "None") continue;
-                    if (!Extras.AddScaryItems && Extras.IsScaryItem(addon.ItemId)) continue;
 
                     BloodwebList.Add(new Classes.InventoryItemBloodweb
                     {
@@ -47,7 +45,6 @@
                     if (!Extras.AddNonInventoryItems && !offering.ShouldBeInInventory) continue;
                     if (!Extras.AddEventItems && offering.EventId != "None") continue;
                     if (!Extras.AddRetiredOfferings && offering.Availability == "EItemAvailability::Retired") continue;
-                    if (!Extras.AddScaryItems && Extras.IsScaryItem(offering.ItemId)) continue;
 
                     BloodwebList.Add(new Classes.InventoryItemBloodweb
                     {
@@ -61,7 +58,6 @@
             {
                 if (!Extras.AddNonInventoryItems && !item.ShouldBeInInventory) continue;
                 if (!Extras.AddEventItems && item.EventId != "None") continue;
-                if (!Extras.AddScaryItems && Extras.IsScaryItem(item.ItemId)) continue;
 
                 TivoTigs.Add(new Classes.ItemBloodweb
                 {
@@ -74,7 +70,6 @@
             {
                 if (!Extras.AddNonInventoryItems && !item.ShouldBeInInventory) continue;
                 if (!Extras.AddEventItems && item.EventId != "None") continue;
-                if (!Extras.AddScaryItems && Extras.IsScaryItem(item.ItemId)) continue;
 
                 TivoTigs.Add(new Classes.ItemBloodweb
                 {
@@ -88,7 +83,6 @@
                 if (!Extras.AddNonInventoryItems && !item.ShouldBeInInventory) continue;
                 if (!Extras.AddEventItems && item.EventId != "None") continue;
                 if (!Extras.AddRetiredOfferings && item.Availability == "EItemAvailability::Retired") continue;
-                if (!Extras.AddScaryItems && Extras.IsScaryItem(item.ItemId)) continue;
 
                 TivoTigs.Add(new Classes.ItemBloodweb
                 {

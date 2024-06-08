@@ -87,6 +87,35 @@ namespace Melancholy
             Add_Values(Classes.FilePaths.PerkDb, "PerkDB");
         }
 
+        private static List<string> exclusiveStrings = new List<string>
+        {
+            "Twitch",
+            "PandaTV",
+            "CartoonZ",
+            "Smile",
+            "AdmBahroo",
+            "BloodLetting",
+            "KingKong",
+            "Bryce",
+            "AngryPug",
+            "Sxyhxy",
+            "72hrs",
+            "Crew01",
+            "ME_007",
+            "ME_008",
+            "AP_008",
+            "UN_Charm005",
+            "UN_Charm003",
+            "BA_BDG_99",
+            "BA_BNR_99",
+            "HU_041",
+            "UN_Charm004",
+            "ZO_BNR_09",
+            "ZO_BDG_11",
+            "DF_Torso03_01",
+            "Wraith_Body_Ohmwrecker"
+        };
+
         private static void Add_Values(List<string> list, string type)
         {
             foreach (var item in list)
@@ -103,6 +132,10 @@ namespace Melancholy
                         switch (type)
                         {
                             case "CustomizationItemDB":
+                                string customizationId = property?["customizationId"]?.ToString();
+                                string localizedString =
+                                    property?["UIData"]?["DisplayName"]?["LocalizedString"]?.ToString();
+                                
                                 Classes.Customization customization = new()
                                 {
                                     CosmeticId = property?["customizationId"]?.ToString() ?? string.Empty,
@@ -120,7 +153,13 @@ namespace Melancholy
                                     EventId = property?["eventID"]?.ToString() ?? string.Empty,
                                     Availability = property?["Availability"]?["ItemAvailability"]?.ToString() ??
                                                    string.Empty,
-                                    FilePath = item ?? string.Empty
+                                    FilePath = item ?? string.Empty,
+                                    IsLegacy = (property?["InclusionVersion"]?.ToString() == "Legacy"
+                                                && Regex.IsMatch(property?["UIData"]?["DisplayName"]?["LocalizedString"]?.ToString(), @"Legacy.*\b(I|II|III)\b", RegexOptions.IgnoreCase)),
+                                    IsExclusive = (exclusiveStrings.Any(s => customizationId.Contains(s)
+                                                                             && !customizationId.Contains("Charity")))
+                                                  || (localizedString.Contains("Twitchy")
+                                                      && !(localizedString.Contains("Flame") || localizedString.Contains("Medkit")))
                                 };
                                 if (!IsInBlacklist(customization.CosmeticId)) Classes.Ids.CosmeticIds.Add(customization);
                                 break;
