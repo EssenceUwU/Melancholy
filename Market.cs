@@ -55,15 +55,15 @@ namespace Melancholy
 
             marketObj = new Classes.Market
             {
-                Code = 200,
-                Message = "OK",
-                Data = new Classes.MarketData
+                code = 200,
+                message = "OK",
+                data = new Classes.MarketData
                 {
-                    PlayerId = "MarketUpdater V2",
-                    Updated = DateTime.Now.ToString("MM/dd/yyyy"),
-                    Comment = "Market created by MarketUpdater V2",
-                    DeveloperDiscord = "@bhvr",
-                    Inventory = inventory
+                    playerId = "MarketUpdater V2",
+                    updated = DateTime.Now.ToString("MM/dd/yyyy"),
+                    comment = "Market created by MarketUpdater V2",
+                    developerDiscord = "@bhvr",
+                    inventory = inventory
                 }
             };
         }
@@ -115,9 +115,9 @@ namespace Melancholy
 
                     return new Classes.InventoryItem
                     {
-                        LastUpdatedAt = DateTimeOffset.Now.ToUnixTimeSeconds(),
-                        ObjectId = id,
-                        Quantity = (count == 0 ? new Random().Next(8, 88) : count)
+                        lastUpdatedAt = DateTimeOffset.Now.ToUnixTimeSeconds(),
+                        objectId = id,
+                        quantity = (count == 0 ? new Random().Next(8, 88) : count)
                     };
                 }));
         }

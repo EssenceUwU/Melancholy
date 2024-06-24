@@ -87,25 +87,25 @@
 
         public class Market
         {
-            public int Code { get; set; }
-            public string Message { get; set; } = string.Empty;
-            public MarketData Data { get; set; } = new();
+            public int code { get; set; }
+            public string message { get; set; } = string.Empty;
+            public MarketData data { get; set; } = new();
         }
 
         public class MarketData
         {
-            public string PlayerId { get; set; } = string.Empty;
-            public string Updated { get; set; } = string.Empty;
-            public string Comment { get; set; } = string.Empty;
-            public string DeveloperDiscord { get; set; } = string.Empty;
-            public List<InventoryItem> Inventory { get; set; } = [];
+            public string playerId { get; set; } = string.Empty;
+            public string updated { get; set; } = string.Empty;
+            public string comment { get; set; } = string.Empty;
+            public string developerDiscord { get; set; } = string.Empty;
+            public List<InventoryItem> inventory { get; set; } = [];
         }
 
         public class InventoryItem
         {
-            public long LastUpdatedAt { get; set; }
-            public string ObjectId { get; set; } = string.Empty;
-            public int Quantity { get; set; }
+            public long lastUpdatedAt { get; set; }
+            public string objectId { get; set; } = string.Empty;
+            public int quantity { get; set; }
         }
 
         public class Player
@@ -120,20 +120,20 @@
 
         public class Bloodweb
         {
-            public List<string> Paths { get; set; } = [];
-            public List<Ring> RingData { get; set; } = [];
+            public List<string> paths { get; set; } = [];
+            public List<Ring> ringData { get; set; } = [];
         }
 
         public class Ring
         {
-            public List<Node> NodeData { get; set; } = [];
+            public List<Node> nodeData { get; set; } = [];
         }
 
         public class Node
         {
-            public string ContentId { get; set; } = string.Empty;
-            public int NodeId { get; set; }
-            public string State { get; set; } = "Collected";
+            public string contentId { get; set; } = string.Empty;
+            public int nodeId { get; set; }
+            public string state { get; set; } = "Collected";
         }
 
         public class InventoryItemBloodweb
@@ -148,53 +148,53 @@
 
         public class ItemBloodweb
         {
-            public string ItemId { get; set; } = string.Empty;
-            public int Quantity { get; set; }
+            public string itemId { get; set; } = string.Empty;
+            public int quantity { get; set; }
         }
 
         public class BloodwebData
         {
-            public bool BloodwebLevelChanged { get; set; } = false;
-            public List<object> UpdatedWallets { get; set; } = [];
-            public string CharacterName { get; set; } = "";
-            public int BloodwebLevel { get; set; } = 50;
-            public int PrestigeLevel { get; set; } = 10;
-            public Bloodweb BloodWebData { get; set; } = BloodwebGenerator.Make_Bloodweb("EPlayerRole::VE_Camper", "", false);
-            public List<ItemBloodweb> CharacterItems { get; set; } = BloodwebGenerator.TivoTigs;
-            public int LegacyPrestigeLevel { get; set; } = 3;
+            public bool bloodwebLevelChanged { get; set; } = false;
+            public List<object> updatedWallets { get; set; } = [];
+            public string characterName { get; set; } = "";
+            public int bloodwebLevel { get; set; } = 50;
+            public int prestigeLevel { get; set; } = 10;
+            public Bloodweb bloodWebData { get; set; } = BloodwebGenerator.Make_Bloodweb("EPlayerRole::VE_Camper", "", false);
+            public List<ItemBloodweb> characterItems { get; set; } = BloodwebGenerator.TivoTigs;
+            public int legacyPrestigeLevel { get; set; } = 3;
         }
 
         public class CharacterItem
         {
-            public string CharacterName { get; set; } = string.Empty;
-            public int LegacyPrestigeLevel { get; set; } = 3;
-            public List<ItemBloodweb> CharacterItems { get; set; } = [];
-            public int BloodWebLevel { get; set; } = 50;
-            public Bloodweb BloodWebData { get; set; } = BloodwebGenerator.Make_Bloodweb("EPlayerRole::VE_Camper", "");
-            public int PrestigeLevel { get; set; } = 10;
+            public string characterName { get; set; } = string.Empty;
+            public int legacyPrestigeLevel { get; set; } = 3;
+            public List<ItemBloodweb> characterItems { get; set; } = [];
+            public int bloodWebLevel { get; set; } = 50;
+            public Bloodweb bloodWebData { get; set; } = BloodwebGenerator.Make_Bloodweb("EPlayerRole::VE_Camper", "");
+            public int prestigeLevel { get; set; } = 10;
         }
 
         public class GetAllData
         {
-            public List<CharacterItem> List { get; set; } = [];
+            public List<CharacterItem> list { get; set; } = [];
         }
 
         public class PrestigeCharacter
         {
-            public string CharacterName { get; set; } = string.Empty;
-            public int PrestigeLevel { get; set; } = 10;
-            public int BloodWebLevel { get; set; } = 50;
+            public string characterName { get; set; } = string.Empty;
+            public int prestigeLevel { get; set; } = 10;
+            public int bloodWebLevel { get; set; } = 50;
         }
 
         public class PrestigeItem
         {
-            public string Name { get; set; } = string.Empty;
-            public int Quantity { get; set; } = 0;
+            public string name { get; set; } = string.Empty;
+            public int quantity { get; set; } = 0;
         }
 
         public class PrestigeData<T>
         {
-            public List<T> List { get; set; } = [];
+            public List<T> list { get; set; } = [];
         }
     }
 }

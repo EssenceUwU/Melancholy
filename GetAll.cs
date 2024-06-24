@@ -8,12 +8,12 @@ namespace Melancholy
         {
             Classes.GetAllData getAllData = new();
 
-            getAllData.List.AddRange(Classes.Ids.DlcIds.Select(character => new Classes.CharacterItem
+            getAllData.list.AddRange(Classes.Ids.DlcIds.Select(character => new Classes.CharacterItem
             {
-                CharacterName = character.CharacterName,
-                CharacterItems = GenerateItemData(character),
-                BloodWebData = BloodwebGenerator.Make_Bloodweb(character.CharacterType, character.CharacterDefaultItem),
-                PrestigeLevel = Market.PrestigeLevel
+                characterName = character.CharacterName,
+                characterItems = GenerateItemData(character),
+                bloodWebData = BloodwebGenerator.Make_Bloodweb(character.CharacterType, character.CharacterDefaultItem),
+                prestigeLevel = Market.PrestigeLevel
             }));
 
             var json = JsonConvert.SerializeObject(getAllData, Formatting.Indented);
@@ -38,8 +38,8 @@ namespace Melancholy
                     })
                     .Select(item => new Classes.ItemBloodweb
                     {
-                        ItemId = item.ItemId,
-                        Quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
+                        itemId = item.ItemId,
+                        quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
                     }));
             
             characterItems.AddRange(
@@ -59,8 +59,8 @@ namespace Melancholy
                     })
                     .Select(addon => new Classes.ItemBloodweb
                     {
-                        ItemId = addon.ItemId,
-                        Quantity = Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount
+                        itemId = addon.ItemId,
+                        quantity = Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount
                     }));
             
             characterItems.AddRange(
@@ -80,8 +80,8 @@ namespace Melancholy
                     })
                     .Select(offering => new Classes.ItemBloodweb
                     {
-                        ItemId = offering.ItemId,
-                        Quantity = Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount
+                        itemId = offering.ItemId,
+                        quantity = Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount
                     }));
 
             characterItems.AddRange(
@@ -91,8 +91,8 @@ namespace Melancholy
                         perk.CharacterType == "EPlayerRole::VE_None")
                     .Select(perk => new Classes.ItemBloodweb
                     {
-                        ItemId = perk.ItemId,
-                        Quantity = 3
+                        itemId = perk.ItemId,
+                        quantity = 3
                     }));
 
             return characterItems;

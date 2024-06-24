@@ -11,10 +11,10 @@ namespace Melancholy
             var addons = new List<Classes.PrestigeItem>();
             var offerings = new List<Classes.PrestigeItem>();
 
-            characters.List.AddRange(Classes.Ids.DlcIds.Select(character => new Classes.PrestigeCharacter
+            characters.list.AddRange(Classes.Ids.DlcIds.Select(character => new Classes.PrestigeCharacter
             {
-                CharacterName = character.CharacterName,
-                PrestigeLevel = (Market.PrestigeLevel == 0 ? new Random().Next(Market.PrestigeLevelMinimum, Market.PrestigeLevelMaximum) : Market.PrestigeLevel)
+                characterName = character.CharacterName,
+                prestigeLevel = (Market.PrestigeLevel == 0 ? new Random().Next(Market.PrestigeLevelMinimum, Market.PrestigeLevelMaximum) : Market.PrestigeLevel)
             }));
 
             var characterJson = JsonConvert.SerializeObject(characters, Formatting.Indented);
@@ -22,8 +22,8 @@ namespace Melancholy
 
             items.AddRange(Classes.Ids.ItemIds.Select(item => new Classes.PrestigeItem
             {
-                Name = item.ItemId,
-                Quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
+                name = item.ItemId,
+                quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
             }));
 
             var itemJson = JsonConvert.SerializeObject(items, Formatting.Indented);
@@ -31,8 +31,8 @@ namespace Melancholy
 
             addons.AddRange(Classes.Ids.AddonIds.Select(addon => new Classes.PrestigeItem
             {
-                Name = addon.ItemId,
-                Quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
+                name = addon.ItemId,
+                quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
             }));
 
             var addonJson = JsonConvert.SerializeObject(addons, Formatting.Indented);
@@ -40,8 +40,8 @@ namespace Melancholy
 
             offerings.AddRange(Classes.Ids.OfferingIds.Select(offering => new Classes.PrestigeItem
             {
-                Name = offering.ItemId,
-                Quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
+                name = offering.ItemId,
+                quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
             }));
 
             var offeringJson = JsonConvert.SerializeObject(offerings, Formatting.Indented);
