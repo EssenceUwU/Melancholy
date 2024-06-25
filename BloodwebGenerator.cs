@@ -61,8 +61,8 @@
 
                 TivoTigs.Add(new Classes.ItemBloodweb
                 {
-                    ItemId = item.ItemId,
-                    Quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
+                    itemId = item.ItemId,
+                    quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
                 });
             }
 
@@ -73,8 +73,8 @@
 
                 TivoTigs.Add(new Classes.ItemBloodweb
                 {
-                    ItemId = item.ItemId,
-                    Quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
+                    itemId = item.ItemId,
+                    quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
                 });
             }
 
@@ -86,14 +86,14 @@
 
                 TivoTigs.Add(new Classes.ItemBloodweb
                 {
-                    ItemId = item.ItemId,
-                    Quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
+                    itemId = item.ItemId,
+                    quantity = (Market.ItemAmount == 0 ? new Random().Next(8, 88) : Market.ItemAmount)
                 });
             }
 
             if (perkStatus)
                 foreach (var item in Classes.Ids.PerkIds)
-                    TivoTigs.Add(new Classes.ItemBloodweb { ItemId = item.ItemId, Quantity = 3 });
+                    TivoTigs.Add(new Classes.ItemBloodweb { itemId = item.ItemId, quantity = 3 });
 
             var pathData = new List<string>
             {
@@ -151,73 +151,73 @@
             {
                 new Classes.Ring
                 {
-                    NodeData = [
-                        new Classes.Node { NodeId = 0 }
+                    nodeData = [
+                        new Classes.Node { nodeId = 0 }
                     ]
                 },
                 new Classes.Ring
                 {
-                    NodeData = [
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 101 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 102 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 103 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 104 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 105 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 106 }
+                    nodeData = [
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 101 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 102 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 103 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 104 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 105 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 106 }
                     ]
                 },
                 new Classes.Ring
                 {
-                    NodeData = [
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 201 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 202 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 203 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 204 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 205 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 206 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 207 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 208 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 209 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 210 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 211 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 212 }
+                    nodeData = [
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 201 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 202 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 203 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 204 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 205 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 206 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 207 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 208 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 209 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 210 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 211 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 212 }
                     ]
                 },
                 new Classes.Ring
                 {
-                    NodeData = [
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 301 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 302 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 303 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 304 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 305 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 306 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 307 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 308 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 309 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 310 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 311 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 312 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 313 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 314 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 315 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 316 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 317 },
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 318 }
+                    nodeData = [
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 301 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 302 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 303 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 304 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 305 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 306 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 307 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 308 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 309 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 310 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 311 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 312 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 313 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 314 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 315 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 316 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 317 },
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 318 }
                     ]
                 },
                 new Classes.Ring
                 {
-                    NodeData = [
-                        new Classes.Node { ContentId = GetRandomId(characterType), NodeId = 401 }
+                    nodeData = [
+                        new Classes.Node { contentId = GetRandomId(characterType), nodeId = 401 }
                     ]
                 }
             };
 
             return new Classes.Bloodweb
             {
-                Paths = pathData,
-                RingData = ringData
+                paths = pathData,
+                ringData = ringData
             };
         }
 
